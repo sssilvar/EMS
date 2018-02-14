@@ -75,18 +75,21 @@ void setup() {
     delay(100);
 
     // Potentiometer set first intensity
-    delay(200);
-    Wire.begin();
-    delay(300);
-    Wire.beginTransmission(48); // transmit to device
-    Wire.write(byte(0x00));            // sends instruction byte
-    Wire.write(intensity);             // sends potentiometer value byte
-    delay(200);
-    Wire.endTransmission();     // stop transmitting
-  
+    Wire.begin(); // join i2c bus (address optional for master)
 }
 
 void loop() {
+  // Start I2C communication (POTENCIOMETER)
+  delay(200);
+  Wire.begin();
+  delay(300);
+  Wire.beginTransmission(48); // transmit to device
+  Wire.write(byte(0x00));            // sends instruction byte
+  Wire.write(intensity);             // sends potentiometer value byte
+  delay(200);
+  Wire.endTransmission();     // stop transmitting
+
+  // Start Interface
   while(!readButton()); // IDLE State
   waitForOnSignal(); // Start LOOP
 }
