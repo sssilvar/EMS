@@ -80,8 +80,6 @@ void setup() {
 
 void loop() {
   // Start I2C communication (POTENCIOMETER)
-  delay(200);
-  Wire.begin();
   delay(300);
   Wire.beginTransmission(48); // transmit to device
   Wire.write(byte(0x00));            // sends instruction byte
